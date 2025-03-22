@@ -1,0 +1,11 @@
+instalation :
+=============================================================================================================
+- installer les mods
+- installer les patch (voir README_I_AM_VERRY_IMPORTANT.txt)
+- installer kubejs (voir README_I_AM_VERRY_IMPORTANT.txt)
+
+=============================================================================================================
+mise à jour : 
+=============================================================================================================
+dans un nouveau modpack : 
+	- voir instalation

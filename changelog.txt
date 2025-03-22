@@ -1,0 +1,93 @@
+	- 1.4 :
+=====================================================================================
+- suppression de patchouli et de MTR
+- ajout de changelog.txt
+- M-A-J des mods :
+	M-A-J de create,
+	M-A-J de Electrodynamics,
+	M-A-J de Nuclear science,
+=====================================================================================
+	- 1.5 :
+=====================================================================================
+- Ajout de Embedium par défaut dans le modpack
+- M-A-J des mods :
+	M-A-J de Ballistix
+	M-A-J de Create
+	M-A-J de ParCool
+	M-A-J de Waystone
+	M-A-J de YACL 
+=====================================================================================
+	- 1.6 : The Vanilla + Update
+=====================================================================================
+- Ajout de JEI et AppleSkin par défaut dans le modpack et coté serveur
+- Ajout de security craft
+- Ajout de advance netherite 
+- Ajout de BEB ?
+- Ajout de better F3
+- Ajout de Blur
+- Ajout de Cognition
+- Ajout de collective
+- comeback de curios API
+- Ajout de double doors
+- Ajout de farmer's delight
+- Ajout de forgiving void
+- Ajout de geckolib
+- Ajout de Iceberg
+- Ajout de keep some Inventory (même si ça à pas l'air de marcher)
+- Ajout de legendary tooltips
+- Ajout de prism
+- Ajout de steve's realistic sleep
+- Ajout de tactical aid 
+- Ajout de skin restorer (server-side)
+==================================================================================
+	- 1.7 : Create et gros canon
+==================================================================================
+- Mise à jour des mods
+	- M-A-J de balm
+	- M-A-J de cognition
+	- M-A-J de farmer's delight
+	- M-A-J de JEI
+	- M-A-J de parcool
+	- M-A-j de steve's realistics sleep
+	- M-A-J de TACZ
+	- M-A-J de YACL
+- suppression de Keep some inventory
+- suppression de tactical aid (parce que le mod est pas complètement traduit et que personne l'utilise)
+- ajout de create: steam 'n' rails, craft ET stuff & addition, the factory must grow, big canon,
+- ajout de immersive aircraft
+- ajout de refined storage
+==================================================================================
+	- 1.8 :
+==================================================================================
+- ajout de corpse
+- ajout de simple voice chat
+- ajout de ok zoomer
+- ajout de create: structures arise
+- ajout de ferriteCore (optimisation lourde au niveau de la RAM)
+- mise à jour des mods 
+	- M-A-J de Balm
+	- M-A-J de BEB
+	- M-A-J de Create stuff and addition
+	- M-A-J de farmer's delight
+	- M-A-J de Forgified Fabric API
+	- M-A-J de Nuclear Science
+	- M-A-J de Waystone
+=================================================================================
+	-1.9 : La mise à jour Patch (globalement ajoute des mods que je voulais rajouter depuis la 1.6)
+=================================================================================
+- ajout de CC: tweaked
+- ajout de CC: bridge (compatibilité create)
+- ajout de CC: bx (compatibilité balistix)
+- ajout de create: radar
+- ajout de create: jetpack
+- ajout de kotlin for forge (parce que API)
+- ajout de fastboot
+- mise à jours des mods :
+	- M-A-J de ballistix
+	- M-A-J de balm
+	- M-A-J de collective
+	- M-A-J de create: structure arise
+	- M-A-J de curios API
+	- M-A-J de double doors
+	- M-A-J de electrodynamics
+	- M-A-J de parcool
