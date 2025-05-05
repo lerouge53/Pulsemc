@@ -1,1 +1,0 @@
-powershell .\install-pulsemc.ps1
