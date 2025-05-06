@@ -12,7 +12,7 @@ ServerEvents.recipes(event => {
     event.recipes.create.deploying('kubejs:incomplete_circuit_advanced',['electrodynamics:circuitbasic', 'minecraft:diamond'])
     event.recipes.create.deploying('kubejs:incomplete_circuit_elite',['electrodynamics:circuitadvanced', 'minecraft:lapis_block'])
     event.recipes.create.deploying('kubejs:incomplete_circuit_ultimate',['electrodynamics:circuitelite', '#forge:dusts/obsidian'])
-    event.recipes.create.deploying('electrodynamics:circuitbasic', ['electrodynamics:platesteel', 'kubejs:circuit_board_kit'])
+    event.recipes.create.deploying('electrodynamics:circuitbasic', ['#forge:plates\steel', 'kubejs:circuit_board_kit'])
 })
 
 ServerEvents.recipes(event => {
