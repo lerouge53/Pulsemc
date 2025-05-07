@@ -1,1 +1,1 @@
-pwsh install-pulsemc-linux.ps1
+pwsh -ExecutionPolicy Bypass -File ".\install-pulsemc-windows.ps1"
