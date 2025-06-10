@@ -77,10 +77,10 @@
 =================================================================================
 - ajout de CC: tweaked
 - ajout de CC: bridge (compatibilité create)
-- ajout de CC: bx (compatibilité balistix)
+- ajout de CC: BX (compatibilité balistix)
 - ajout de create: radar
 - ajout de create: jetpack
-- ajout de kotlin for forge (parce que API)
+- ajout de kotlin for forge (API)
 - ajout de fastboot
 - mise à jours des mods :
 	- M-A-J de ballistix
@@ -91,3 +91,13 @@
 	- M-A-J de double doors
 	- M-A-J de electrodynamics
 	- M-A-J de parcool
+===================================================================================
+2.0 : Reset de tout le modpack
+===================================================================================
+2.1
+===================================================================================
+- Mise à jour de 24 mods
+- ajout d'un installateur (Voir README_I_AM_VERRY_IMPORTANT.txt)
+- suppression du glitch de SU infini par la suppression de create : Power Loader
+- ajout de Dragon Egg Protector (Mod unique, indisponible ailleurs) (Permet d'empêcher que l'oeuf de dragon sois dans un enderchest)
+- optimisation du dévellopement par l'ajout d'un github : https://github.com/lerouge53/Pulsemc

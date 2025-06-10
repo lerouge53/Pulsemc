@@ -1,0 +1,3 @@
+la branche bêta est une version intermédiaire du modpack sur lequel des fonctionnalité en dévellopement sont publié.
+cette branche sera merged à la version suivante dans main avant la sortie de la release.
+
