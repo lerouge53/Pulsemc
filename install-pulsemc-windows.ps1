@@ -53,7 +53,7 @@ $buttonDiscord.ForeColor = [System.Drawing.Color]::White
 $buttonDiscord.FlatStyle = "Flat"
 $buttonDiscord.FlatAppearance.BorderSize = 0
 $buttonDiscord.Add_Click({
-    Start-Process "https://discord.gg/YrhaycfbWG"
+    Start-Process "https://discord.gg/votreserveur"
 })
 $panelActions.Controls.Add($buttonDiscord)
 
@@ -65,7 +65,7 @@ $labelPath.Size = New-Object System.Drawing.Size(510, 20)
 $labelPath.ForeColor = [System.Drawing.Color]::White
 $form.Controls.Add($labelPath)
 
-# === Zone de texte pour le chemin Minecraft ===
+# = Zone de texte pour le chemin Minecraft ===
 $textBoxPath = New-Object System.Windows.Forms.TextBox
 $textBoxPath.Location = New-Object System.Drawing.Point(170, 40)
 $textBoxPath.Size = New-Object System.Drawing.Size(410, 20)
@@ -205,13 +205,28 @@ $buttonExecute.Add_Click({
         $installFlag = Join-Path $mcRoot "pulsemc.installed.flag"
         New-Item -Path $installFlag -ItemType File -Force | Out-Null
         $statusBox.AppendText("Installation terminée.`r`n")
-        Update-ButtonState # Mettre à jour l'état après l'installation
+        Update-ButtonState
     }
 
     # === MISE À JOUR AVANCÉE DES MODS ===
-    if ($mode -eq "M" -or $mode -eq "R") {
+    if ($mode -eq "M") {
         if (Test-Path $jsonPath) {
             $statusBox.AppendText("Mise à jour des mods selon actions_mods.json...`r`n")
+
+            # === Mise à jour du dossier kubejs ===
+            $sourceKubeJS = "kubejs"
+            $destKubeJS = Join-Path $mcRoot "kubejs"
+            if (Test-Path $destKubeJS) {
+                Remove-Item -Path $destKubeJS -Recurse -Force
+                $statusBox.AppendText("Dossier kubejs existant supprimé.`r`n")
+            }
+            if (Test-Path $sourceKubeJS) {
+                Copy-Item -Path $sourceKubeJS -Destination $destKubeJS -Recurse -Force
+                $statusBox.AppendText("Nouveau dossier kubejs copié.`r`n")
+            } else {
+                $statusBox.AppendText("Dossier kubejs introuvable dans la source.`r`n")
+            }
+
             $actions = Get-Content $jsonPath | ConvertFrom-Json
 
             # === Supprimer les anciens mods ===
@@ -258,6 +273,55 @@ $buttonExecute.Add_Click({
             }
         } else {
             $statusBox.AppendText("Fichier actions_mods.json introuvable. Mise à jour annulée.`r`n")
+        }
+    }
+
+    # === Mise à jour avancée après installation complète ===
+    if ($mode -eq "R" -and (Test-Path $jsonPath)) {
+        $statusBox.AppendText("Mise à jour des mods selon actions_mods.json...`r`n")
+        $actions = Get-Content $jsonPath | ConvertFrom-Json
+
+        # === Supprimer les anciens mods ===
+        foreach ($mod in $actions.suppressions) {
+            $modPath = Join-Path $modsFolder $mod
+            if (Test-Path $modPath) {
+                Remove-Item $modPath -Force
+                $statusBox.AppendText("Mod supprimé : $mod`r`n")
+            } else {
+                $statusBox.AppendText("Mod introuvable (déjà supprimé ?) : $mod`r`n")
+            }
+        }
+
+        # === Ajouter les nouveaux mods ===
+        foreach ($mod in $actions.ajouts) {
+            $sourcePath = Join-Path $modsUpdatedFolder $mod
+            $destPath = Join-Path $modsFolder $mod
+            if (Test-Path $sourcePath) {
+                Copy-Item -Path $sourcePath -Destination $destPath -Force
+                $statusBox.AppendText("Nouveau mod ajouté : $mod`r`n")
+            } else {
+                $statusBox.AppendText("Mod à ajouter non trouvé : $mod`r`n")
+            }
+        }
+
+        # === Gérer les mises à jour ===
+        foreach ($majPair in $actions.maj) {
+            $ancien = $majPair[0]
+            $nouveau = $majPair[1]
+            $ancienPath = Join-Path $modsFolder $ancien
+            $nouveauPath = Join-Path $modsUpdatedFolder $nouveau
+
+            if (Test-Path $ancienPath) {
+                Remove-Item $ancienPath -Force
+                $statusBox.AppendText("Mod mis à jour (ancien supprimé) : $ancien`r`n")
+            }
+
+            if (Test-Path $nouveauPath) {
+                Copy-Item -Path $nouveauPath -Destination $modsFolder -Force
+                $statusBox.AppendText("Mod mis à jour (nouveau copié) : $nouveau`r`n")
+            } else {
+                $statusBox.AppendText("Fichier pour mise à jour manquant : $nouveau`r`n")
+            }
         }
     }
 
