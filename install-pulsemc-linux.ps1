@@ -20,13 +20,13 @@ if (-Not (Test-Path "$mcRoot")) {
     exit
 }
 
-# === Dossier d'installation détecté ? MYSTÈRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-$installFlag = Join-Path $mcRoot "pulsemc.installed.flag" # pour résumer cette ligne, il va voir si un fichier existe.
-$alreadyInstalled = Test-Path $installFlag # Si oui alors il va fire la ligne en dessous
+# === Dossier d'installation détecté ? ===
+$installFlag = Join-Path $mcRoot "pulsemc.installed.flag"
+$alreadyInstalled = Test-Path $installFlag
 
-# === Choix utilisateur
+# === Choix utilisateur ===
 if ($alreadyInstalled) {
-    $mode = Read-Host "Modpack déjà installé. Voulez-vous [M]ettre à jour ou [R]éinstaller ?" # la ligne en dessous
+    $mode = Read-Host "Modpack déjà installé. Voulez-vous [M]ettre à jour ou [R]éinstaller ?"
 } else {
     $mode = "R"
 }
@@ -70,7 +70,7 @@ if ($mode -eq "R") {
         Write-Host "Dossier 'mods' créé."
     }
 
-    # === Copie des mods depuis mods-zip (anciennement mods.zip) ===
+    # === Copie des mods depuis mods-zip ===
     $modsZipFolder = "mods-zip"
     if (Test-Path $modsZipFolder) {
         Write-Host "`nInstallation des mods depuis $modsZipFolder..."
@@ -82,15 +82,29 @@ if ($mode -eq "R") {
         Write-Host "Le dossier 'mods-zip/' est introuvable."
     }
 
-    # === Marquer l'installation comme faite
+    # === Marquer l'installation comme faite ===
     New-Item -Path $installFlag -ItemType File -Force | Out-Null
-    Write-Host "`nInstallation terminée.`n" # cool
+    Write-Host "`nInstallation terminée.`n"
 }
 
-# === MISE À JOUR AVANCÉE DES MODS (via actions_mods.json) === (je déteste action_mods.json)
+# === MISE À JOUR AVANCÉE DES MODS (via actions_mods.json) ===
 if ($mode -eq "M" -or $mode -eq "R") {
     if (Test-Path $jsonPath) {
         Write-Host "`nMise à jour des mods..."
+
+        # === Mise à jour du dossier kubejs ===
+        $sourceKubeJS = "kubejs"
+        $destKubeJS = Join-Path $mcRoot "kubejs"
+        if (Test-Path $destKubeJS) {
+            Remove-Item -Path $destKubeJS -Recurse -Force
+            Write-Host "Dossier kubejs existant supprimé."
+        }
+        if (Test-Path $sourceKubeJS) {
+            Copy-Item -Path $sourceKubeJS -Destination $destKubeJS -Recurse -Force
+            Write-Host "Nouveau dossier kubejs copié."
+        } else {
+            Write-Host "Dossier kubejs introuvable dans la source."
+        }
 
         $actions = Get-Content $jsonPath | ConvertFrom-Json
 
@@ -143,4 +157,5 @@ if ($mode -eq "M" -or $mode -eq "R") {
     }
 }
 
+Write-Host "`nOpération terminée."
 Read-Host "`nAppuyez sur Entrée pour fermer"
