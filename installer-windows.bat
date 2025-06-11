@@ -1,2 +1,2 @@
 @echo off
-powershell -ExecutionPolicy Bypass -File ".\install-pulsemc-windows.ps1"
+powershell -ExecutionPolicy Bypass .\install-pulsemc-windows.ps1
